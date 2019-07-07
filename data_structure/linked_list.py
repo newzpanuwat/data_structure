@@ -19,7 +19,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
     
-    def is_empty(self)
+    def is_empty(self):
         return self.head == None
 
     def size(self):
@@ -34,3 +34,11 @@ class LinkedList:
             current = current.next_node
 
         return count
+    
+    def add(self, data):
+        """
+        Adds a new node contain a data at head
+        """
+        new_node = Node(data)
+        new_node.next_node = self.head
+        self.head = new_node
