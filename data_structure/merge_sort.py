@@ -11,7 +11,7 @@ def merge_sort(list):
     Conquer: Recursively sort the sublists created in previous step
     Combine: Merge the sorted sublists created in previous step
 
-    Take O(n log n)
+    Take O(kn log n)
     """
 
     if len(list) <= 1:
@@ -78,3 +78,17 @@ l = merge_sort(alist)
 
 print(verify_sorted(alist))
 print(verify_sorted(l))
+
+
+
+"""
+-in a perfect world you'd have to do log n merges of size n, n/2, n/4 ... (or better said 1, 2, 3 ... n/4, n/2, n - they can't be parallelized), which gives O(n). It still is O(n log n). In not-so-perfect-world you don't have infinite number of processors and context-switching and synchronization offsets any potential gains.
+
+-Space complexity is always Ω(n) as you have to store the elements somewhere. Additional space complexity can be O(n) in an implementation using arrays and O(1) in linked list implementations. In practice implementations using lists need additional space for list pointers, so unless you already have the list in memory it shouldn't matter.
+
+- edit if you count stack frames, then it's O(n)+ O(log n) , so still O(n) in case of arrays. In case of lists it's O(log n) additional memory.
+
+- Lists only need some pointers changed during the merge process. That requires constant additional memory.
+
+- That's why in merge-sort complexity analysis people mention 'additional space requirement' or things like that. It's obvious that you have to store the elements somewhere, but it's always better to mention 'additional memory' to keep purists at bay.
+"""
