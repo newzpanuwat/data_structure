@@ -10,6 +10,8 @@ def merge_sort(list):
     Divide: Find the midpoint of the list and divide into sublists
     Conquer: Recursively sort the sublists created in previous step
     Combine: Merge the sorted sublists created in previous step
+
+    Take O(n log n)
     """
 
     if len(list) <= 1:
@@ -25,7 +27,9 @@ def split(list):
     """
     Divide the unsorted ist at midpoint sublists
     Return two sublists - left and right
+    Takes overall O(log n) time
 
+    O(n log n)
     """
 
     mid = len(list) // 2
@@ -38,6 +42,7 @@ def merge(left, right):
     """
     Merges two lists (arrays), sorting them in the process
     Returns a new merged list
+    Run in overall O(n) time
     """
 
     l = []
@@ -57,3 +62,19 @@ def merge(left, right):
     while j < len(right):
         l.append(right[j])
         j += 1
+    
+    return l
+
+def verify_sorted(list):
+    n = len(list)
+
+    if n == 0 or n == 1:
+        return True
+    
+    return list[0] < list[1] and verify_sorted(list[1:])
+
+alist = [54, 20, 52, 1, 77, 35, 56, 68]
+l = merge_sort(alist)
+
+print(verify_sorted(alist))
+print(verify_sorted(l))
