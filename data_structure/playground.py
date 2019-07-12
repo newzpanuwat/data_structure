@@ -48,7 +48,7 @@ def merge(left, right):
     return l
 
 sorted = merge_sort(list)
-print(sorted)
+print("List: ", sorted)
 
 # Liner search
 
@@ -60,3 +60,41 @@ def linear_search(lst, target):
 
 result = linear_search(sorted, 32)
 print("Linear search: ", result)
+
+
+def recursive_binary_search(list, target):
+    if len(list) == 0:
+        return False
+    else:
+        midpoint = len(list) // 2
+
+        if list[midpoint] == target:
+            return True
+        else:
+            if list[midpoint] < target:
+                return recursive_binary_search(list[midpoint+1:], target)
+            else:
+                return recursive_binary_search(list[:midpoint], target)
+
+result2 = recursive_binary_search(sorted, 32)
+print("Recursive Binary Search: ", result2)
+
+
+def binary_search(list, target):
+    first = 0
+    last = len(list) - 1
+
+    while first <= last:
+        midpoint = (first - last) // 2
+
+        if list[midpoint] == target:
+            return midpoint
+        elif list[midpoint] < target:
+            first = midpoint + 1
+        else:
+            last = midpoint - 1
+    
+    return None
+
+result3 = binary_search(sorted, 10)
+print("Normal Binary Search:", result3)
